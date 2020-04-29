@@ -11,6 +11,58 @@ function getElement(id) { return document.getElementById(id); }
 
 function isTrue(str) { return /^true$/i.test(str); }
 
+// Definition of a countdown timer
+function CountDownTimer(duration, granularity) {
+    this.duration = duration;
+    this.granularity = granularity || 1000;
+    this.tickFtns = [];
+    this.running = false;
+}
+
+CountDownTimer.prototype.start = function () {
+    if (this.running) {
+        return;
+    }
+    this.running = true;
+    var start = Date.now(),
+        that = this,
+        diff, obj;
+
+    (function timer() {
+        diff = that.duration - (((Date.now() - start) / 1000) | 0);
+
+        if (diff > 0) {
+            setTimeout(timer, that.granularity);
+        } else {
+            diff = 0;
+            that.running = false;
+        }
+
+        obj = CountDownTimer.parse(diff);
+        that.tickFtns.forEach(function (ftn) {
+            ftn.call(this, obj.minutes, obj.seconds);
+        }, that);
+    }());
+};
+
+CountDownTimer.prototype.onTick = function (ftn) {
+    if (typeof ftn === 'function') {
+        this.tickFtns.push(ftn);
+    }
+    return this;
+};
+
+CountDownTimer.prototype.expired = function () {
+    return !this.running;
+};
+
+CountDownTimer.parse = function (seconds) {
+    return {
+        'minutes': (seconds / 60) | 0,
+        'seconds': (seconds % 60) | 0
+    };
+};
+
 var gIsAndroid = false;
 var gAccessConfirmed = false;
 var gAccessRequiredInput;
@@ -87,9 +139,9 @@ function initForm(numSets) {
     $("#exportOptionsSync").click(exportOptionsSync);
     $("#importOptionsSync").click(importOptionsSync);
     $("#saveOptions").button();
-    $("#saveOptions").click({ closeOptions: false }, saveOptions);
+    $("#saveOptions").click({ closeOptions: false }, saveOptionsDelay);
     $("#saveOptionsClose").button();
-    $("#saveOptionsClose").click({ closeOptions: true }, saveOptions);
+    $("#saveOptionsClose").click({ closeOptions: true }, saveOptionsDelay);
 
     // Set active tab
     if (gTabIndex < 0) {
@@ -108,10 +160,25 @@ function initForm(numSets) {
     }
 }
 
+function formatTimeSave(minutes, seconds) {
+    minutes = minutes < 10 ? "0" + minutes : minutes;
+    seconds = seconds < 10 ? "0" + seconds : seconds;
+    $("#remainingTime").html(minutes + ':' + seconds);
+}
+
+function saveOptionsDelay(event) {
+    const delay = 900
+    const timer = new CountDownTimer(delay);
+    timer.onTick(formatTimeSave).start();
+    $("#alertSavingOptionsDelay").dialog("open");
+    setTimeout(saveOptions, delay * 1000, event);
+
+}
+
 // Save options to local storage (returns true if success)
 //
 function saveOptions(event) {
-    //log("saveOptions");
+    $("#alertSavingOptionsDelay").dialog("close");
 
     // Check format for text fields in block sets
     for (let set = 1; set <= gNumSets; set++) {
@@ -249,7 +316,7 @@ function saveOptions(event) {
         }
     }
 
-    let complete = event.data.closeOptions ? closeOptions : retrieveOptions;
+    let complete = event.data.closeOptions ? closeOptions : alertRetrieveOptions;
 
     if (options["sync"]) {
         // Set sync option in local storage and all options in sync storage
@@ -257,7 +324,10 @@ function saveOptions(event) {
         browser.storage.sync.set(options).then(
             function () {
                 browser.runtime.sendMessage({ type: "options" });
+
                 $("#form").hide({ effect: "fade", complete: complete });
+
+
             },
             function (error) { warn("Cannot set options: " + error); }
         );
@@ -287,11 +357,14 @@ function closeOptions() {
     browser.runtime.sendMessage({ type: "close" });
 }
 
+function alertRetrieveOptions() {
+    $("#alertSavedOptions").dialog("open");
+    retrieveOptions()
+}
+
 // Retrieve options from local storage
 //
 function retrieveOptions() {
-    //log("retrieveOptions");
-
     browser.storage.local.get("sync").then(onGotSync, onError);
 
     function onGotSync(options) {
@@ -848,7 +921,7 @@ function initAccessControlPrompt(prompt) {
         modal: true,
         width: 600,
         buttons: dialogButtons,
-        close: function (event, ui) { if (!gAccessConfirmed) closeOptions(); }
+        close: function (_event, _ui) { if (!gAccessConfirmed) closeOptions(); }
     });
 
     // Connect ENTER key to OK button
