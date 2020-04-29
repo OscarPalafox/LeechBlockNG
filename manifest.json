@@ -1,17 +1,16 @@
 {
-
 	"applications": {
 		"gecko": {
-			"id": "leechblockng@proginosko.com"
+			"id": "leechblockng2@proginosko.com"
 		}
 	},
-
 	"author": "James Anderson",
-
 	"background": {
-		"scripts": ["common.js", "background.js"]
+		"scripts": [
+			"common.js",
+			"background.js"
+		]
 	},
-
 	"browser_action": {
 		"browser_style": false,
 		"default_icon": {
@@ -21,37 +20,34 @@
 		"default_popup": "popup.html",
 		"default_title": "LeechBlock"
 	},
-
 	"content_scripts": [
 		{
-			"matches": ["<all_urls>"],
-			"css": ["content.css"],
-			"js": ["content.js"]
+			"matches": [
+				"<all_urls>"
+			],
+			"css": [
+				"content.css"
+			],
+			"js": [
+				"content.js"
+			]
 		}
 	],
-
 	"description": "LeechBlock is a simple productivity tool designed to block those time-wasting sites that can suck the life out of your working day.",
-
 	"homepage_url": "https://www.proginosko.com/leechblock/",
-
 	"icons": {
 		"48": "icons/leechblock48.png",
 		"96": "icons/leechblock96.png"
 	},
-
 	"manifest_version": 2,
-
-	"name": "LeechBlock NG",
-
+	"name": "LeechBlock NG2",
 	"optional_permissions": [
 		"<all_urls>"
 	],
-
 	"options_ui": {
 		"page": "options.html",
 		"open_in_tab": true
 	},
-
 	"permissions": [
 		"downloads",
 		"menus",
@@ -59,7 +55,5 @@
 		"tabs",
 		"webNavigation"
 	],
-
 	"version": "1.0.4"
-
 }

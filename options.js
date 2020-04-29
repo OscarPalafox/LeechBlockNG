@@ -39,10 +39,10 @@ function initForm(numSets) {
 	let setHTML = $("#blockSet1").html();
 	for (let set = 2; set <= gNumSets; set++) {
 		let nextTabHTML = tabHTML
-				.replace(/(Block Set) 1/g, `$1 ${set}`)
-				.replace(/(id|href)="(#?\w+)1"/g, `$1="$2${set}"`);
+			.replace(/(Block Set) 1/g, `$1 ${set}`)
+			.replace(/(id|href)="(#?\w+)1"/g, `$1="$2${set}"`);
 		let nextSetHTML = setHTML
-				.replace(/(id|for)="(\w+)1"/g, `$1="$2${set}"`);
+			.replace(/(id|for)="(\w+)1"/g, `$1="$2${set}"`);
 		$("#tabGeneral").before(`<li id="tabBlockSet${set}">${nextTabHTML}</li>`);
 		$("#paneGeneral").before(`<div id="blockSet${set}">${nextSetHTML}</div>`);
 	}
@@ -155,7 +155,7 @@ function saveOptions(event) {
 			return false;
 		}
 		if (blockURL != DEFAULT_BLOCK_URL && blockURL != DELAYED_BLOCK_URL
-				&& !getParsedURL(blockURL).page) {
+			&& !getParsedURL(blockURL).page) {
 			$("#tabs").tabs("option", "active", (set - 1));
 			$(`#blockURL${set}`).focus();
 			$("#alertBadBlockURL").dialog("open");
@@ -295,7 +295,7 @@ function retrieveOptions() {
 	browser.storage.local.get("sync").then(onGotSync, onError);
 
 	function onGotSync(options) {
-		if(options["sync"]) {
+		if (options["sync"]) {
 			// Get all options from sync storage
 			browser.storage.sync.get().then(onGot, onError);
 		} else {
@@ -371,8 +371,8 @@ function retrieveOptions() {
 
 				// Disable options if specified block conditions are fulfilled
 				if (lockdown
-						|| (!conjMode && (withinTimePeriods || afterTimeLimit))
-						|| (conjMode && (withinTimePeriods && afterTimeLimit))) {
+					|| (!conjMode && (withinTimePeriods || afterTimeLimit))
+					|| (conjMode && (withinTimePeriods && afterTimeLimit))) {
 					// Disable options for this set
 					disableSetOptions(set);
 				}
