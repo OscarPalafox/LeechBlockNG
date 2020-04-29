@@ -1,14 +1,14 @@
 /* LeechBlock CSS style */
 
 body {
-	background: #fff;
-	color: #2e3436;
-	font: normal 16px "Open Sans", Arial, sans-serif;
-	text-align: center;
+    background: #fff;
+    color: #2e3436;
+    font: normal 16px "Open Sans", Arial, sans-serif;
+    text-align: center;
 }
 
 div {
-	margin-top: 50px;
+    margin-top: 50px;
 }
 
 h1 {
@@ -26,16 +26,16 @@ a:hover {
 }
 
 .support {
-	color: #777;
-	font-size: 14px;
-	font-style: italic;
+    color: #777;
+    font-size: 14px;
+    font-style: italic;
 }
 
 .support a {
-	color: #777;
-	text-decoration: underline;
+    color: #777;
+    text-decoration: underline;
 }
 
 .logo {
-	width: 408px;
+    width: 408px;
 }

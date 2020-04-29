@@ -5,48 +5,48 @@
 // Open options page
 //
 function openOptions() {
-	browser.runtime.openOptionsPage();
-	window.close();
+    browser.runtime.openOptionsPage();
+    window.close();
 }
 
 // Open lockdown page
 //
 function openLockdown() {
-	openExtensionPage("lockdown.html");
+    openExtensionPage("lockdown.html");
 }
 
 // Open override page
 //
 function openOverride() {
-	openExtensionPage("override.html");
+    openExtensionPage("override.html");
 }
 
 // Open stats page
 //
 function openStats() {
-	openExtensionPage("stats.html");
+    openExtensionPage("stats.html");
 }
 
 // Open extension page (either create new tab or activate existing tab)
 //
 function openExtensionPage(url) {
-	let fullURL = browser.extension.getURL(url);
+    let fullURL = browser.extension.getURL(url);
 
-	browser.tabs.query({ url: fullURL }).then(onGot, onError);
+    browser.tabs.query({ url: fullURL }).then(onGot, onError);
 
-	function onGot(tabs) {
-		if (tabs.length > 0) {
-			browser.tabs.update(tabs[0].id, { active: true });
-		} else {
-			browser.tabs.create({ url: fullURL });
-		}
-		window.close();
-	}
+    function onGot(tabs) {
+        if (tabs.length > 0) {
+            browser.tabs.update(tabs[0].id, { active: true });
+        } else {
+            browser.tabs.create({ url: fullURL });
+        }
+        window.close();
+    }
 
-	function onError(error) {
-		browser.tabs.create({ url: fullURL });
-		window.close();
-	}
+    function onError(error) {
+        browser.tabs.create({ url: fullURL });
+        window.close();
+    }
 }
 
 document.querySelector("#options").addEventListener("click", openOptions);

@@ -1,69 +1,69 @@
 /* LeechBlock options CSS style */
 
 html {
-	overflow-y: scroll;
+    overflow-y: scroll;
 }
 
 body {
-	background: #fff;
-	color: #000;
-	font-size: 14px;
+    background: #fff;
+    color: #000;
+    font-size: 14px;
 }
 
 .ui-button {
-	background: #eee;
-	border: 1px solid #888;
+    background: #eee;
+    border: 1px solid #888;
 }
 
 .ui-button:focus {
-	background: #eee;
-	border: 1px solid #888;
+    background: #eee;
+    border: 1px solid #888;
 }
 
 .ui-button:hover {
-	background: #ddd;
-	border: 1px solid #888;
+    background: #ddd;
+    border: 1px solid #888;
 }
 
 .ui-widget button {
-	padding: 2px 8px;
-	background: #eee;
-	border: 1px solid #888;
+    padding: 2px 8px;
+    background: #eee;
+    border: 1px solid #888;
 }
 
 .ui-widget button:hover:enabled {
-	background: #ddd;
+    background: #ddd;
 }
 
 .ui-widget button:disabled {
-	background: #eee;
-	color: #666;
-	border: 1px solid #ccc;
+    background: #eee;
+    color: #666;
+    border: 1px solid #ccc;
 }
 
 .ui-widget fieldset, input, select, textarea {
-	background: #fff;
-	color: #000;
-	border: 1px solid #888;
+    background: #fff;
+    color: #000;
+    border: 1px solid #888;
 }
 
 .ui-widget input:disabled, select:disabled, textarea:disabled {
-	background: #eee;
-	color: #666;
-	border: 1px solid #ccc;
+    background: #eee;
+    color: #666;
+    border: 1px solid #ccc;
 }
 
 .ui-widget hr {
-	height: 0px;
-	margin: 0px;
-	border-top: none;
-	border-left: none;
-	border-right: none;
-	border-bottom: 1px solid #888;
+    height: 0px;
+    margin: 0px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid #888;
 }
 
 .ui-widget legend {
-	font-weight: bold;
+    font-weight: bold;
 }
 
 .ui-widget a {
@@ -76,40 +76,40 @@ body {
 }
 
 .ui-widget th, td {
-	text-align: center;
-	padding: 4px 12px;
+    text-align: center;
+    padding: 4px 12px;
 }
 
 .logo {
-	width: 408px;
+    width: 408px;
 }
 
 #form-container {
-	display: flex;
-	justify-content: center;
-	align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #tabs {
-	display: inline-block;
+    display: inline-block;
 }
 
 #paneAbout {
-	color: #2e3436;
-	text-align: center;
-	line-height: 1.5em;
+    color: #2e3436;
+    text-align: center;
+    line-height: 1.5em;
 }
 
 #promptAccessCodeText {
-	font: normal 14px monospace;
-	user-select: none;
-	-moz-user-select: none;
+    font: normal 14px monospace;
+    user-select: none;
+    -moz-user-select: none;
 }
 
 #promptAccessCodeCanvas {
-	background: #fff;
+    background: #fff;
 }
 
 #promptAccessCodeInput {
-	font: normal 14px monospace;
+    font: normal 14px monospace;
 }
