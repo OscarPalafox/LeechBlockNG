@@ -334,8 +334,8 @@ function checkTab(id, url, isRepeat) {
 				|| (host2 == "www." + host1);
 	}
 
-	// Quick exit for about:blank
-	if (url == "about:blank") {
+	// Quick exit for about:blank and moz-extension
+	if (url == "about:blank" || url.startsWith("moz-extension")) {
 		return false; // not blocked
 	}
 
@@ -773,7 +773,7 @@ function createBlockInfo(url) {
 	// Get block set and URL (including hash part) of blocked page
 	let blockedSet = parsedURL.args.shift();
 	let blockedSetName = gOptions[`setName${blockedSet}`];
-	let blockedURL = parsedURL.query.substring(3); // retains original separators (& or ;)
+	let blockedURL = parsedURL.query.substring(blockedSet.length + 2); // retains original separators (& or ;)
 	if (parsedURL.hash != null) {
 		blockedURL += "#" + parsedURL.hash;
 	}

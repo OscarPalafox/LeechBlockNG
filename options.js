@@ -375,6 +375,8 @@ function retrieveOptions() {
 					|| (conjMode && (withinTimePeriods && afterTimeLimit))) {
 					// Disable options for this set
 					disableSetOptions(set);
+					// Disable importing options
+					// getElement("importOptions").disabled = true;
 				}
 			}
 		}
