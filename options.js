@@ -73,8 +73,6 @@ var gTabIndex = 0;
 // Initialize form (with specified number of block sets)
 //
 function initForm(numSets, delaySave) {
-    //log("initForm: " + numSets);
-
     // Reset form to original HTML
     $("#form").html(gFormHTML);
 
@@ -137,13 +135,13 @@ function initForm(numSets, delaySave) {
     }
     $("#theme").change(function (e) { setTheme($("#theme").val()); });
     $("#exportOptions").click(exportOptions);
-    $("#importOptions").click(importOptions);
+    $("#importOptions").click({ delay: delaySave }, importOptions);
     $("#exportOptionsSync").click(exportOptionsSync);
     $("#importOptionsSync").click(importOptionsSync);
     $("#saveOptions").button();
     $("#saveOptions").click({ closeOptions: false, delay: delaySave }, saveOptionsDelay);
     $("#saveOptionsClose").button();
-    $("#saveOptionsClose").click({ closeOptions: true }, saveOptionsDelay);
+    $("#saveOptionsClose").click({ closeOptions: true, delay: delaySave }, saveOptionsDelay);
 
     // Set active tab
     if (gTabIndex < 0) {
@@ -172,7 +170,7 @@ function saveOptionsDelay(event) {
     const delay = parseInt(event.data.delay);
     const timer = new CountDownTimer(delay);
     timer.onTick(formatTimeSave).start();
-    $("#alertSavingOptionsDelay").dialog("open");
+    if (delay) $("#alertSavingOptionsDelay").dialog("open");
     setTimeout(saveOptions, delay * 1000, event);
 
 }
@@ -653,7 +651,7 @@ function compileExportOptions() {
 //
 function applyImportOptions(options) {
     // Initialize form
-    initForm(options["numSets"], options["delaySave"]);
+    initForm(options["numSets"], options["oldDelaySave"]);
 
     // Per-set options
     for (let set = 1; set <= gNumSets; set++) {
@@ -742,7 +740,7 @@ function exportOptions() {
 
 // Import options from file
 //
-function importOptions() {
+function importOptions(event) {
     let file = getElement("importFile").files[0];
     if (!file) {
         $("#alertNoImportFile").dialog("open");
@@ -751,48 +749,48 @@ function importOptions() {
 
     // Read and process file
     let reader = new FileReader();
-    reader.onload = processImportFile;
-    reader.readAsText(file);
-
-    function processImportFile(event) {
-        let text = event.target.result;
-        if (!text) {
-            $("#alertImportError").dialog("open");
-            return;
-        }
-
-        // Extract options from text
-        let regexp = /^(\w+)=(.*)$/;
-        let lines = text.split(/[\n\r]+/);
-        let options = {};
-        let hasOptions = false;
-        for (let line of lines) {
-            let results = regexp.exec(line);
-            if (results) {
-                let option = results[1];
-                let value = results[2];
-                if (/^days\d+$/.test(option)) {
-                    options[option] = decodeDays(value);
-                } else if (/^(true|false)$/.test(value)) {
-                    options[option] = isTrue(value);
-                } else {
-                    options[option] = value;
-                }
-                hasOptions = true;
+    reader.onload = (function (delay) {
+        return function (event) {
+            let text = event.target.result;
+            if (!text) {
+                $("#alertImportError").dialog("open");
+                return;
             }
-        }
 
-        if (!hasOptions) {
-            $("#alertImportError").dialog("open");
-            return;
-        }
+            // Extract options from text
+            let regexp = /^(\w+)=(.*)$/;
+            let lines = text.split(/[\n\r]+/);
+            let options = { oldDelaySave: delay };
+            let hasOptions = false;
+            for (let line of lines) {
+                let results = regexp.exec(line);
+                if (results) {
+                    let option = results[1];
+                    let value = results[2];
+                    if (/^days\d+$/.test(option)) {
+                        options[option] = decodeDays(value);
+                    } else if (/^(true|false)$/.test(value)) {
+                        options[option] = isTrue(value);
+                    } else {
+                        options[option] = value;
+                    }
+                    hasOptions = true;
+                }
+            }
 
-        cleanOptions(options);
-        applyImportOptions(options);
+            if (!hasOptions) {
+                $("#alertImportError").dialog("open");
+                return;
+            }
 
-        $("#tabs").tabs("option", "active", gNumSets);
-        $("#alertImportSuccess").dialog("open");
-    }
+            cleanOptions(options);
+            applyImportOptions(options);
+
+            $("#tabs").tabs("option", "active", gNumSets);
+            $("#alertImportSuccess").dialog("open");
+        };
+    })(event.data.delay);
+    reader.readAsText(file);
 }
 
 // Export options to sync storage
