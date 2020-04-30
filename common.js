@@ -65,6 +65,7 @@ const GENERAL_OPTIONS = {
     processActiveTabs: { type: "boolean", def: false, id: "processActiveTabs" }, // default: disabled
     accessCodeImage: { type: "boolean", def: false, id: "accessCodeImage" }, // default: disabled
     autoExportSync: { type: "boolean", def: true, id: "autoExportSync" }, // default: enabled
+    delaySave: { type: "string", def: "900", id: "delaySave" }, // default: 900s -> 15 mins
     lockdownHours: { type: "string", def: "", id: null }, // default: blank
     lockdownMins: { type: "string", def: "", id: null }, // default: blank
 };

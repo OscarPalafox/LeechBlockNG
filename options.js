@@ -72,7 +72,7 @@ var gTabIndex = 0;
 
 // Initialize form (with specified number of block sets)
 //
-function initForm(numSets) {
+function initForm(numSets, delaySave) {
     //log("initForm: " + numSets);
 
     // Reset form to original HTML
@@ -101,6 +101,7 @@ function initForm(numSets) {
 
     // Set up JQuery UI widgets
     $("#tabs").tabs({ activate: onActivate });
+
     for (let set = 1; set <= gNumSets; set++) {
         $(`#allDay${set}`).click(function (e) { $(`#times${set}`).val(ALL_DAY_TIMES); });
         $(`#defaultPage${set}`).click(function (e) { $(`#blockURL${set}`).val(DEFAULT_BLOCK_URL); });
@@ -139,7 +140,7 @@ function initForm(numSets) {
     $("#exportOptionsSync").click(exportOptionsSync);
     $("#importOptionsSync").click(importOptionsSync);
     $("#saveOptions").button();
-    $("#saveOptions").click({ closeOptions: false }, saveOptionsDelay);
+    $("#saveOptions").click({ closeOptions: false, delay: delaySave }, saveOptionsDelay);
     $("#saveOptionsClose").button();
     $("#saveOptionsClose").click({ closeOptions: true }, saveOptionsDelay);
 
@@ -167,7 +168,7 @@ function formatTimeSave(minutes, seconds) {
 }
 
 function saveOptionsDelay(event) {
-    const delay = 900
+    const delay = parseInt(event.data.delay);
     const timer = new CountDownTimer(delay);
     timer.onTick(formatTimeSave).start();
     $("#alertSavingOptionsDelay").dialog("open");
@@ -316,7 +317,7 @@ function saveOptions(event) {
         }
     }
 
-    let complete = event.data.closeOptions ? closeOptions : alertRetrieveOptions;
+    let complete = event.data.closeOptions ? closeOptions : dialogueRetrieveOptions;
 
     if (options["sync"]) {
         // Set sync option in local storage and all options in sync storage
@@ -357,7 +358,7 @@ function closeOptions() {
     browser.runtime.sendMessage({ type: "close" });
 }
 
-function alertRetrieveOptions() {
+function dialogueRetrieveOptions() {
     $("#alertSavedOptions").dialog("open");
     retrieveOptions()
 }
@@ -382,7 +383,7 @@ function retrieveOptions() {
         cleanTimeData(options);
 
         // Initialize form
-        initForm(options["numSets"]);
+        initForm(options["numSets"], options["delaySave"]);
 
         setTheme(options["theme"]);
 
@@ -452,6 +453,8 @@ function retrieveOptions() {
                     getElement("importOptions").disabled = true;
                     getElement("syncStorage").disabled = true;
                     getElement("importOptionsSync").disabled = true;
+                    // Disable saving delay option
+                    getElement("delaySave").disabled = true;
                 }
             }
         }
@@ -649,7 +652,7 @@ function compileExportOptions() {
 //
 function applyImportOptions(options) {
     // Initialize form
-    initForm(options["numSets"]);
+    initForm(options["numSets"], options["delaySave"]);
 
     // Per-set options
     for (let set = 1; set <= gNumSets; set++) {
