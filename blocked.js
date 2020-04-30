@@ -16,6 +16,7 @@ function processBlockInfo(info) {
     }
 
     let blockedURL = document.getElementById("lbBlockedURL");
+    console.log(info);
     if (info.blockedURL && blockedURL) {
         if (info.blockedURL.length > 60) {
             blockedURL.innerText = info.blockedURL.substring(0, 57) + "...";

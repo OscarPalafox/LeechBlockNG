@@ -765,11 +765,12 @@ function createBlockInfo(url) {
 
     // Get parsed URL
     let parsedURL = getParsedURL(url);
-    let pageURL = parsedURL.page;
 
     if (parsedURL.args == null || parsedURL.args.length < 2) {
+        let args = parsedURL.args == null ? null : parsedURL.args[0];
+
         warn("Cannot create block info: not enough arguments in URL.");
-        return { theme: theme };
+        return { theme, args: args };
     }
 
     // Get block set and URL (including hash part) of blocked page

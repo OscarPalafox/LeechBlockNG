@@ -6,6 +6,8 @@ const MAX_SETS = 30;
 const ALL_DAY_TIMES = "0000-2400";
 const DEFAULT_BLOCK_URL = "blocked.html?$S&$U";
 const DELAYED_BLOCK_URL = "delayed.html?$S&$U";
+const FOCUSD_BLOCK_URL = "stayfocusd.html";
+const FOCUSD_BLOCK_REGEX = /^stayfocusd.html(\?.*) ?$/;
 const DEFAULT_ICON = { 16: "icons/leechblock16.png", 32: "icons/leechblock32.png" };
 const OVERRIDE_ICON = { 16: "icons/leechblock16o.png", 32: "icons/leechblock32o.png" };
 
@@ -65,7 +67,7 @@ const GENERAL_OPTIONS = {
     processActiveTabs: { type: "boolean", def: false, id: "processActiveTabs" }, // default: disabled
     accessCodeImage: { type: "boolean", def: false, id: "accessCodeImage" }, // default: disabled
     autoExportSync: { type: "boolean", def: true, id: "autoExportSync" }, // default: enabled
-    delaySave: { type: "string", def: "900", id: "delaySave" }, // default: 900s -> 15 mins
+    delaySave: { type: "string", def: "0", id: "delaySave" }, // default: 900s -> 15 mins
     lockdownHours: { type: "string", def: "", id: null }, // default: blank
     lockdownMins: { type: "string", def: "", id: null }, // default: blank
 };

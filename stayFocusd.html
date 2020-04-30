@@ -1,0 +1,183 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
+<html nighteye="disabled" lang="en-US">
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=windows-1252">
+    <meta name="Content-Security-Policy" content="
+        script-src 'self';
+        object-src 'none'; base-uri 'none';
+        require-trusted-types-for 'script';
+        report-uri https://csp.example.com;
+    ">
+    <title>StayFocusd</title>
+    <style type="text/css">
+        body {
+            background-color: #f4f4f4;
+            font-family: arial, helvetica, sans-serif;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 60px;
+            font-weight: bold;
+            line-height: 70px;
+            min-height: 70px;
+        }
+
+        #ad {
+            background: #fff;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            padding: 24px 24px 20px 24px;
+            margin: 90px auto 90px auto;
+            overflow: hidden;
+            width: 680px;
+        }
+
+        #ad img {
+            float: left;
+            margin: 16px 40px 0 0;
+        }
+
+        #ad div.copy {
+            font-size: 12px;
+            margin-left: 200px;
+            text-align: left;
+        }
+
+        #ad div.copy h2 {
+            font-size: 16px;
+            margin: 6px 0 0 0;
+        }
+
+        #ad div.copy b {
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        #donation {
+            clear: both;
+            font-size: 20px;
+            width: 700px;
+            margin: 0 auto 10px auto;
+            padding: 10px;
+        }
+
+        #explainer {
+            color: #666;
+            font-size: 10px;
+            text-align: right;
+        }
+
+        #explainer a {
+            color: #666;
+            text-decoration: none;
+        }
+
+        #explainer a:hover {
+            text-decoration: underline;
+        }
+
+        #explanation {
+            background: #f4f4f4;
+            border: 1px solid #eaeaea;
+            display: none;
+            font-size: 11px;
+            line-height: 14px;
+            margin-top: 20px;
+            padding: 6px 18px;
+            text-align: left;
+        }
+
+        #coupon {
+            border: 3px dashed #666;
+            cursor: pointer;
+            float: left;
+            margin: 0 30px 0 0;
+            padding: 16px 20px;
+            width: 130px;
+        }
+
+        #coupon h1 {
+            color: #068FDB;
+            font-size: 64px;
+            margin: 0;
+        }
+
+        #coupon h2 {
+            font-size: 20px;
+            margin: 0 0 -5px 0;
+        }
+
+        #coupon h3 {
+            font-size: 14px;
+            margin: 0;
+        }
+
+        em {
+            color: #068FDB;
+            font-style: normal;
+            font-weight: bold;
+            font-size: 14px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <h1 id="msg"></h1>
+
+    <div id="ad">
+        <a href="https://freedom.refersion.com/c/5a98f" target="_blank">
+            <img src="http://www.stayfocusd.com/assets/img/omg.gif" alt="Try Freedom for free" width="160">
+        </a>
+        <div class="copy">
+            <h2>Does StayFocusd work on iPhone, iPad, Android, PC, or in other browsers?</h2>
+            <p>Nope. Luckily, <a href="https://freedom.refersion.com/c/5a98f" target="_blank">Freedom</a> does.</p>
+            <p>Freedom blocks distracting apps and websites everywhere.</p>
+            <p>iPhone and Android devices? Check.</p>
+            <p>Mac and Windows? Check.</p>
+            <p>It blocks distracting websites in browsers like Safari, Firefox,
+                Edge, Internet Explorer, and more. It can also block time-consuming
+                desktop applications like email, Steam, and Slack. It even works on
+                Kindles, Chromebooks, and Linux devices.</p>
+            <p>Install it everywhere, then schedule and sync your blocks across devices.</p>
+            <p>
+                Oh, and if you use the code <em>STAYFOCUSD</em> at checkout, you'll get <b>40% off</b> Freedom Premium,
+                because you're a StayFocusd user.
+            </p>
+            <p>It's free to try, so do it now. It's okay. I'll wait.</p>
+            <p>
+                <a href="https://freedom.refersion.com/c/5a98f" target="_blank">Try it now.</a>
+            </p>
+        </div>
+    </div>
+
+    <div id="donation">
+        If you've found StayFocusd useful, please make a $10 donation!
+    </div>
+
+    <div>
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+            <input type="hidden" name="cmd" value="_s-xclick">
+            <input type="hidden" name="hosted_button_id" value="HY4EM2H7E2WJL">
+            <input type="image" src="https://www.paypal.com/en_US/i/btn/btn_donateCC_LG.gif" name="submit"
+                alt="PayPal - The safer, easier way to pay online!" border="0">
+            <img alt="" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" style="display: none !important;"
+                width="1" hidden="" height="1" border="0">
+        </form>
+    </div>
+    <br>
+    <div id="donation">
+        Or, <a href="https://commerce.coinbase.com/checkout/b5e47457-d820-431e-bd03-2bbdc9e13d99" target="_blank">donate
+            via Bitcoin</a>, if you're into that sort of thing.
+    </div>
+    <br><br>
+    <p style="font-size:8px;color:#cccccc;">aws</p>
+
+    <script src="stayFocusd.js"></script>
+</body>
+
+</html>

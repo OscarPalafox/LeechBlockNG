@@ -106,6 +106,7 @@ function initForm(numSets, delaySave) {
         $(`#allDay${set}`).click(function (e) { $(`#times${set}`).val(ALL_DAY_TIMES); });
         $(`#defaultPage${set}`).click(function (e) { $(`#blockURL${set}`).val(DEFAULT_BLOCK_URL); });
         $(`#delayingPage${set}`).click(function (e) { $(`#blockURL${set}`).val(DELAYED_BLOCK_URL); });
+        $(`#focusdPage${set}`).click(function (e) { $(`#blockURL${set}`).val(FOCUSD_BLOCK_URL); });
         $(`#blankPage${set}`).click(function (e) { $(`#blockURL${set}`).val("about:blank"); });
         $(`#resetOpts${set}`).click(function (e) {
             resetSetOptions(set);
@@ -223,7 +224,7 @@ function saveOptions(event) {
             return false;
         }
         if (blockURL != DEFAULT_BLOCK_URL && blockURL != DELAYED_BLOCK_URL
-            && !getParsedURL(blockURL).page) {
+            && FOCUSD_BLOCK_REGEX.test(blockURL) && !getParsedURL(blockURL).page) {
             $("#tabs").tabs("option", "active", (set - 1));
             $(`#blockURL${set}`).focus();
             $("#alertBadBlockURL").dialog("open");
@@ -886,7 +887,7 @@ function disableSetOptions(set) {
     let items = [
         "resetOpts",
         "allDay",
-        "defaultPage", "delayingPage", "blankPage",
+        "defaultPage", "delayingPage", "blankPage", //"focusdPage",
         "clearRegExpBlock", "genRegExpBlock",
         "clearRegExpAllow", "genRegExpAllow",
         "cancelLockdown"

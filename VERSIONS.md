@@ -1,3 +1,6 @@
+### Version 0.2.1 (30 Apr 2020)
+* Implemented feature to use StayFocusd website as blocking page[http://stayfocusd.com/]
+
 ### Version 0.2.0 (30 Apr 2020)
 * Implemented feature to delay saving of options
 
