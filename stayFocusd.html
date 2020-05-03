@@ -9,125 +9,19 @@
         require-trusted-types-for 'script';
         report-uri https://csp.example.com;
     ">
+    <link href="stayFocusd.css" rel="stylesheet">
     <title>StayFocusd</title>
-    <style type="text/css">
-        body {
-            background-color: #f4f4f4;
-            font-family: arial, helvetica, sans-serif;
-            margin-top: 30px;
-            text-align: center;
-        }
-
-        h1 {
-            font-size: 60px;
-            font-weight: bold;
-            line-height: 70px;
-            min-height: 70px;
-        }
-
-        #ad {
-            background: #fff;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            padding: 24px 24px 20px 24px;
-            margin: 90px auto 90px auto;
-            overflow: hidden;
-            width: 680px;
-        }
-
-        #ad img {
-            float: left;
-            margin: 16px 40px 0 0;
-        }
-
-        #ad div.copy {
-            font-size: 12px;
-            margin-left: 200px;
-            text-align: left;
-        }
-
-        #ad div.copy h2 {
-            font-size: 16px;
-            margin: 6px 0 0 0;
-        }
-
-        #ad div.copy b {
-            font-weight: bold;
-            font-size: 14px;
-        }
-
-        #donation {
-            clear: both;
-            font-size: 20px;
-            width: 700px;
-            margin: 0 auto 10px auto;
-            padding: 10px;
-        }
-
-        #explainer {
-            color: #666;
-            font-size: 10px;
-            text-align: right;
-        }
-
-        #explainer a {
-            color: #666;
-            text-decoration: none;
-        }
-
-        #explainer a:hover {
-            text-decoration: underline;
-        }
-
-        #explanation {
-            background: #f4f4f4;
-            border: 1px solid #eaeaea;
-            display: none;
-            font-size: 11px;
-            line-height: 14px;
-            margin-top: 20px;
-            padding: 6px 18px;
-            text-align: left;
-        }
-
-        #coupon {
-            border: 3px dashed #666;
-            cursor: pointer;
-            float: left;
-            margin: 0 30px 0 0;
-            padding: 16px 20px;
-            width: 130px;
-        }
-
-        #coupon h1 {
-            color: #068FDB;
-            font-size: 64px;
-            margin: 0;
-        }
-
-        #coupon h2 {
-            font-size: 20px;
-            margin: 0 0 -5px 0;
-        }
-
-        #coupon h3 {
-            font-size: 14px;
-            margin: 0;
-        }
-
-        em {
-            color: #068FDB;
-            font-style: normal;
-            font-weight: bold;
-            font-size: 14px;
-        }
-    </style>
 
 </head>
 
 <body>
 
-    <h1 id="msg"></h1>
+    <h1><span id="msg">Shouldn't you be working ?</span></h1>
+    <div>
+        <p>The page (<a href="" id="lbBlockedURLLink"><span id="lbBlockedURL"></span></a>) will be unblocked at:
+            <strong><span id="lbUnblockTime">the end of
+                    time</span></strong></p>
+    </div>
 
     <div id="ad">
         <a href="https://freedom.refersion.com/c/5a98f" target="_blank">

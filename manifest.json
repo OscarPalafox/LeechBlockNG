@@ -34,7 +34,7 @@
         }
     ],
     "description": "PoskBlock is a simple productivity tool designed to block those time-wasting sites that can suck the life out of your working day.",
-    "homepage_url": "https://www.proginosko.com/leechblock/",
+    "homepage_url": "https://github.com/OscarPalafox/LeechBlockNG",
     "icons": {
         "48": "icons/leechblock48.png",
         "96": "icons/leechblock96.png"
@@ -56,5 +56,5 @@
         "tabs",
         "webNavigation"
     ],
-    "version": "0.2.3"
+    "version": "0.2.4"
 }

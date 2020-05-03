@@ -222,7 +222,7 @@ function saveOptions(event) {
             return false;
         }
         if (blockURL != DEFAULT_BLOCK_URL && blockURL != DELAYED_BLOCK_URL
-            && FOCUSD_BLOCK_REGEX.test(blockURL) && !getParsedURL(blockURL).page) {
+            && !FOCUSD_BLOCK_REGEX.test(blockURL) && !getParsedURL(blockURL).page) {
             $("#tabs").tabs("option", "active", (set - 1));
             $(`#blockURL${set}`).focus();
             $("#alertBadBlockURL").dialog("open");

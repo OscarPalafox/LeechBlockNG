@@ -1,5 +1,8 @@
 ### Version 0.2.3 (3 May 2020)
-* Fixed bug where "StaFocusd" button would not be disabled if options page is disabled 
+* Added more information to StayFocusd blocking page
+
+### Version 0.2.3 (3 May 2020)
+* Fixed bug where "StaFocusd" button would not be disabled if options page is disabled
 
 ### Version 0.2.2 (30 Apr 2020)
 * Fixed bug where delay of options would not be applied when importing options

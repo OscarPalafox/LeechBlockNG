@@ -759,18 +759,34 @@ function updateIcon() {
 
 // Create info for blocking/delaying page
 //
-function createBlockInfo(url) {
+function createBlockInfo(url, page = undefined) {
     // Get theme
     let theme = gOptions["theme"];
 
     // Get parsed URL
     let parsedURL = getParsedURL(url);
 
-    if (parsedURL.args == null || parsedURL.args.length < 2) {
-        let args = parsedURL.args == null ? null : parsedURL.args[0];
-
+    if (parsedURL.args == null) {
         warn("Cannot create block info: not enough arguments in URL.");
-        return { theme, args: args };
+        return { theme };
+    } else if (parsedURL.args != null && page !== undefined) {
+        const msg = parsedURL.args[0];
+        const set = parsedURL.args[1];
+        let blockedURL = parsedURL.args[2];
+
+        let unblockTime = getUnblockTime(set);
+        if (unblockTime != null) {
+            // Convert to string
+            if (unblockTime.getDate() == new Date().getDate()) {
+                // Same day: show time only
+                unblockTime = unblockTime.toLocaleTimeString();
+            } else {
+                // Different day: show date and time
+                unblockTime = unblockTime.toLocaleString();
+            }
+        }
+
+        return { theme, msg, unblockTime, blockedURL };
     }
 
     // Get block set and URL (including hash part) of blocked page
@@ -814,7 +830,6 @@ function createBlockInfo(url) {
 // Return time when blocked sites will be unblocked (as Date object)
 //
 function getUnblockTime(set) {
-    //log("getUnlockTime: " + set);
 
     if (!gGotOptions || set < 1 || set > gNumSets) {
         return null;
@@ -1149,7 +1164,7 @@ function handleMessage(message, sender, sendResponse) {
         sendResponse();
     } else if (message.type == "blocked") {
         // Block info requested by blocking/delaying page
-        let info = createBlockInfo(sender.url);
+        let info = createBlockInfo(sender.url, message.page);
         sendResponse(info);
     } else if (message.type == "delayed") {
         // Redirect requested by delaying page
