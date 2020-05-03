@@ -21,7 +21,7 @@ const PER_SET_OPTIONS = {
     limitMins: { type: "string", def: "", id: "limitMins" },
     limitPeriod: { type: "string", def: "", id: "limitPeriod" },
     limitOffset: { type: "string", def: "", id: "limitOffset" },
-    conjMode: { type: "boolean", def: false, id: "conjMode" },
+    conjMode: { type: "boolean", def: true, id: "conjMode" },
     days: { type: "array", def: [false, true, true, true, true, true, false], id: "day" },
     blockURL: { type: "string", def: DEFAULT_BLOCK_URL, id: "blockURL" },
     applyFilter: { type: "boolean", def: false, id: "applyFilter" },

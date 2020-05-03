@@ -885,7 +885,7 @@ function disableSetOptions(set) {
     let items = [
         "resetOpts",
         "allDay",
-        "defaultPage", "delayingPage", "blankPage", //"focusdPage",
+        "defaultPage", "delayingPage", "blankPage", "focusdPage",
         "clearRegExpBlock", "genRegExpBlock",
         "clearRegExpAllow", "genRegExpAllow",
         "cancelLockdown"
