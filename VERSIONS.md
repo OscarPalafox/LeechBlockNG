@@ -1,4 +1,7 @@
-### Version 0.2.3 (3 May 2020)
+### Version 0.2.5 (4 May 2020)
+* Fixed bug with StayFocusd blocking page
+
+### Version 0.2.4 (3 May 2020)
 * Added more information to StayFocusd blocking page
 
 ### Version 0.2.3 (3 May 2020)
